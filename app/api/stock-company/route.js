@@ -6,6 +6,8 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const symbol = searchParams.get('symbol');
 
+    env.kv_stocks.put('symbol', symbol)
+
     if (!symbol) {
       return NextResponse.json(
         { error: '请提供股票代码参数 symbol' },
