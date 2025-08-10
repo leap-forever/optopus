@@ -10,6 +10,10 @@ export async function GET(request, env) {
     // console.log("env is", env)
     // env.kv_stocks.put('symbol', symbol) 
     console.log("cloudflare context is", getCloudflareContext().env)  
+
+    const data = await getCloudflareContext().env.KV.get("symbol")
+    console.log("get data is", data)
+    
     const res = await getCloudflareContext().env.KV.put('symbol', symbol)  
     console.log("put res is", res)
 
