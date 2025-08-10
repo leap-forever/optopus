@@ -9,6 +9,10 @@ export default function StockCompanyPage() {
   const [error, setError] = useState('');
   const [companyData, setCompanyData] = useState(null);
 
+  // fetch(request, env){
+  //   console.log("worker env is",env)
+  // }
+
   const columns = [
     { title: '股票代码', dataIndex: 'ts_code', key: 'ts_code' },
     { title: '董事长', dataIndex: 'chairman', key: 'chairman' },

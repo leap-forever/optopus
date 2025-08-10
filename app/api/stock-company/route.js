@@ -1,12 +1,17 @@
 import { NextResponse } from 'next/server';
+// import { getRuntime } from '@cloudflare/next-on-pages';
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
-export async function GET(request) {
+export async function GET(request, env) {
   try {
     // 从 URL 参数中获取股票代码
     const { searchParams } = new URL(request.url);
     const symbol = searchParams.get('symbol');
-
-    env.kv_stocks.put('symbol', symbol)
+    // console.log("env is", env)
+    // env.kv_stocks.put('symbol', symbol) 
+    console.log("cloudflare context is", getCloudflareContext().env)  
+    const res = await getCloudflareContext().env.KV.put('symbol', symbol)  
+    console.log("put res is", res)
 
     if (!symbol) {
       return NextResponse.json(
