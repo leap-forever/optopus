@@ -26,6 +26,8 @@ export async function GET(request, env) {
 
     // 获取 token
     const token = process.env.TUSHARE_TOKEN;
+    
+    console.log("add for token echeck")
     if (!token) {
       return NextResponse.json(
         { error: '未配置 TUSHARE_TOKEN 环境变量' },
